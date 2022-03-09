@@ -1,0 +1,302 @@
+/* Setup */
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Open+Sans:wght@400;700&display=swap');
+* {
+  font-family: 'Alata', sans-serif;
+  /* box-sizing: border-box; */
+}
+html{
+  width: 100%;
+  min-height: calc(100% - 56px);
+  margin-top: 56px;
+}
+body {
+  width: 100%;
+  min-height: 100%;
+}
+#root {
+  width: 100%;
+  min-height: 100%;
+}
+.main {
+  width: 100%;
+  min-height: 100%;
+}
+
+.main__board{
+  width: 100%;
+  min-height: 100%;
+}
+
+.home__board,.list__board{
+  width: 100%;
+  min-height: 100%;
+}
+
+/* Breadcum */
+
+.dino__breadcum__active{
+  text-decoration: underline;
+  color:#0A58CA;
+}
+
+
+/* Footer */
+
+.dino__footer{
+  background-color: #F4F4F4;
+}
+
+.dino__footer h3{
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* List */
+
+.dino__list__list{
+  padding: 10px 20px;
+  background-color: #F4F4F4;
+  text-align: justify;
+}
+
+.dino__list__list h4{
+  padding: 0;
+}
+
+.dino__list__list table{
+  border: 1px solid #FFFFFF;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.dino__list__list th, .dino__list__list td{
+  padding: 5px 20px;
+  background-color: white;
+  border: 2px solid #F4F4F4;
+  overflow: hidden;
+  white-space: wrap;
+  text-overflow: ellipsis;
+ }
+
+ .dino__category__list th:first-child, .dino__category__list td:first-child{
+   max-width:100px;
+   text-align: center;
+ }
+
+ .dino__mesozoic__list table th{
+    width: 150px;
+ }
+
+ .dino__mesozoic__table th:first-child,  .dino__mesozoic__table td:first-child{
+  max-width: 60px;
+  text-align: center;
+ }
+
+
+ 
+/* Detail */
+
+.dino__detail__list{
+  padding: 10px 20px;
+  background-color: #F4F4F4;
+}
+
+.dino__detail__list table{
+  border-collapse: collapse;
+}
+
+.dino__detail__list h4{
+  padding: 0;
+}
+
+.dino__detail__list div{
+  padding: 0;
+}
+
+.dino__detail__list th, .dino__detail__list td{
+ padding: 5px 20px;
+ background-color: white;
+ border: 2px solid #F4F4F4;
+}
+
+.dino__detail__earth{
+  padding: 10px 20px;
+  background-color: #F4F4F4;
+}
+
+.dino__detail__earth iframe{
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  min-height: 300px;
+}
+
+.dino__detail__earth table{
+  border: 1px solid #FFFFFF;
+  border-collapse: collapse;
+}
+
+.dino__detail__earth th, .dino__detail__earth td{
+  padding: 5px 20px;
+  background-color: white;
+  border: 2px solid #F4F4F4;
+}
+
+.dino__detail__earth div:nth-child(1){
+  text-align: center;
+}
+
+.dino__detail__earth h4{
+  padding: 0;
+}
+
+.dino__detail__map{
+  padding: 10px 20px;
+  background-color: #F4F4F4;
+}
+
+.dino__detail__map h4{
+  padding: 0;
+}
+
+.dino__detail__map table{
+  border: 1px solid #FFFFFF;
+  border-collapse: collapse;
+}
+
+.dino__detail__map th, .dino__detail__map td{
+  padding: 5px 20px;
+  background-color: white;
+  border: 2px solid #F4F4F4;
+}
+
+.dino__detail__collection__item{
+  border: 1px solid grey;
+  margin-bottom: 20px;
+}
+
+.dino__detail__collection__item img{
+  cursor: pointer;
+}
+
+.dino__detail__map>div{
+  padding: 0;
+  margin-bottom: 20px;
+}
+/* Collection */
+
+/* Home */
+
+.dino__list{
+  position: relative;
+}
+
+.dino__item{
+  position: relative;
+  top: 0px;
+  transition: top 0.3s linear;
+}
+
+.dino__item:hover{
+  top: -10px;
+}
+
+.dino__filter{
+  padding: 10px 20px;
+  background-color: #F4F4F4;
+}
+
+.dino__search{
+  padding: 10px 20px;
+  background-color: #F4F4F4;
+}
+
+.dino__search__bar{
+  border: 2px solid #212529;
+  padding: 0;
+}
+
+.dino__search__bar .form-control{
+  border: none;
+  border-radius: 0;
+}
+
+.dino__search__bar input{
+  border-right: 2px solid #212529 !important;
+}
+
+.dino__search__bar button{
+  background-color: #FFFFFF;
+  border-radius: 0;
+  color: black;
+  transition: all 0.2s linear;
+}
+
+.dino__search__bar button:hover{
+  background-color: #212529;
+  color: white;
+}
+
+
+
+/* Navbar */
+
+@media (min-width: 1024px) {
+  .dino__navbar{
+    min-height: 56px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  }
+  
+  .dino__navbar__item{
+    text-align: center;
+    padding: 16px 0;
+    position: relative;
+    text-decoration: none;
+  }
+  
+  .dino__navbar__item::before{
+    content: '';
+    background-color: black;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    transition: height 0.2s linear;
+  }
+  
+  .dino__navbar__item:hover{
+    background-color: #E39A0A;
+  }
+  
+  .dino__navbar__item:hover::before{
+    height: 5px;
+  }
+  
+  .dino__navbar__item .nav-link{
+    padding: 0;
+    color: black !important;
+  }
+  
+  .active{
+    background-color: #E39A0A;
+  }
+  
+  .active::before{
+    content: '';
+    background-color: black;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    transition: height 0.2s linear;
+    height: 5px;
+  }
+}
+
+
+
