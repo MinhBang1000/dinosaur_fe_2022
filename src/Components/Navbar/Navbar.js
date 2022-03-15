@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
+    constructor(props){
+        super(props);
+
+    }
     render() {
+        const isLogged = this.props.logged;
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top dino__navbar py-0">
                 <div className="container">
@@ -23,30 +28,19 @@ class Navbar extends Component {
                                 <div className="nav-link" aria-current="page" >Kiến thức</div>
                             </Link>
 
-                            <Link to="/login" className="nav-item  dino__navbar__item" onClick={() => this.props.choose(2)}>
-                                <div className="nav-link" aria-current="page" >Đăng nhập</div>
-                            </Link>
-                            
-                            <Link to="/register" className="nav-item  dino__navbar__item" onClick={() => this.props.choose(3)}>
-                                <div className="nav-link" aria-current="page" >Đăng ký</div>
-                            </Link>
-
-                            <Link to="/blog" className="nav-item  dino__navbar__item" onClick={() => this.props.choose(4)}>
+                            <Link to="/blog" className="nav-item  dino__navbar__item" onClick={() => this.props.choose(2)}>
                                 <div className="nav-link" aria-current="page">Diễn đàn</div>
                             </Link>
 
-                            {/* <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Tài khoản
-                                </a>
-                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a className="dropdown-item" href="#">Thông tin cá nhân</a></li>
-                                    <li><a className="dropdown-item" href="#">Bài viết</a></li>
-                                    <li><hr className="dropdown-divider" /></li>
-                                    <li><a className="dropdown-item" href="#">Đăng xuất</a></li>
-                                </ul>
-                            </li> */}
+                            {
+                                !isLogged?<Link to="/login" className="nav-item  dino__navbar__item" onClick={() => this.props.choose(3)}>
+                                        <div className="nav-link" aria-current="page" >Đăng nhập</div>
+                                    </Link>:<Link to="/profile" className="nav-item  dino__navbar__item" onClick={() => this.props.choose(3)}>
+                                        <div className="nav-link" aria-current="page" >Tài khoản</div>
+                                    </Link>
+                            }
 
+                            
                         </ul>
                     </div>
                 </div>

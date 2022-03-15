@@ -110,6 +110,7 @@ class Detail extends Component {
         .catch((err)=>{
             console.log(err.data);
         });
+        this.props.background();
     }
 
     openImageToSave = (url) => {
@@ -120,6 +121,7 @@ class Detail extends Component {
     }
 
     render() {
+        
         const {dataCountry,isLoadedCountry,dataMesozoic,isLoadedMesozoic,dataCategory,isLoadedCategory,dataDiet,isLoadedDiet,isLoadedDinosaur,dataDinosaur} = this.state;
         const {itemDetail,isLoadedDetail,dinosaurCollection,urlIframe,geoData} = this.state;
         return (
@@ -128,7 +130,7 @@ class Detail extends Component {
                     <div className='col-lg-12'>
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb">
-                                <Link className="breadcrumb-item dino__breadcum__active" to="/" aria-current="page">Trang chủ</Link>
+                                <Link className="breadcrumb-item dino__breadcum__active" onClick={()=>this.props.choose(0)} to="/" aria-current="page">Trang chủ</Link>
                                 <li className="breadcrumb-item" aria-current="page">
                                     {
                                         !isLoadedDetail?<div>Loading...</div>:itemDetail.dinosaur_name_en

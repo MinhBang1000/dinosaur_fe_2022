@@ -27,7 +27,7 @@ body {
   min-height: 100%;
 }
 
-.home__board,.list__board{
+.home__board,.list__board,.login__board,.register__board{
   width: 100%;
   min-height: 100%;
 }
@@ -94,6 +94,39 @@ body {
   max-width: 60px;
   text-align: center;
  }
+
+ /* Profile */
+ .dino__profile__info{
+  padding: 10px 20px;
+  background-color: #F4F4F4;
+}
+
+.dino__profile__update, .dino__profile__post{
+  padding: 100px 20px;
+  background-color: #F4F4F4;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  transition: box-shadow 0.3s linear;
+  cursor: pointer;
+  user-select: none;
+}
+
+.dino__profile__update:hover, .dino__profile__post:hover{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.dino__profile__avatar img{
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.4s;
+  opacity: 1;
+}
+
+.dino__profile__avatar img:hover{
+  opacity: 0.7;
+}
 
 
  
@@ -240,7 +273,112 @@ body {
   color: white;
 }
 
+/* Register */
+.dino__register__list{
+  padding: 10px 20px;
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
 
+.dino__register__social i{
+  font-size: 30px;
+  cursor: pointer;
+  user-select: none;
+  margin: 0 5px;
+  color: #4BA0E8;
+  transition: opacity 0.3s;
+  opacity: 1;
+}
+
+.dino__register__social i:hover{
+  opacity: 0.7;
+}
+
+.dino__register__social i:first-child{
+  color: #455791;
+}
+
+.dino__register__social i:last-child{
+  color: #D95140;
+}
+
+
+
+.dino__register__list form{
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.dino__register__list form input{
+  border-radius: 0;
+}
+
+.dino__register__list form button{
+  border-radius: 50px;
+  padding: 10px 0;
+  background-color: #037097;
+}
+
+/* Login */
+.dino__login__list{
+  padding: 10px 20px;
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.dino__login__social i{
+  font-size: 30px;
+  cursor: pointer;
+  user-select: none;
+  margin: 0 5px;
+  color: #4BA0E8;
+  transition: opacity 0.3s;
+  opacity: 1;
+}
+
+.dino__login__social i:hover{
+  opacity: 0.7;
+}
+
+.dino__login__social i:first-child{
+  color: #455791;
+}
+
+.dino__login__social i:last-child{
+  color: #D95140;
+}
+
+
+
+.dino__login__list form{
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.dino__login__list form input{
+  border-radius: 0;
+}
+
+.dino__login__list form button{
+  border-radius: 50px;
+  padding: 10px 0;
+  background-color: #037097;
+}
+
+/* Background */
+.background__active{
+  background-image: url(../public/Backgrounds/Login.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
+
+.background__active .breadcrumb-item{
+  color: white !important;
+}
 
 /* Navbar */
 
@@ -296,7 +434,13 @@ body {
     transition: height 0.2s linear;
     height: 5px;
   }
+  
 }
 
+@media (max-width: 1023px) {
+  .dino__navbar__item{
+    text-decoration: none;
+  }
+}
 
 

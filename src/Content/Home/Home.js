@@ -16,6 +16,7 @@ class Home extends Component {
             isLoadedDiet: false,
             isLoadedDinosaur: false,
             dataDinosaur: null,
+            dataAllDinosaur: null,
         }
     }
     
@@ -69,16 +70,92 @@ class Home extends Component {
             this.setState({
                 isLoadedDinosaur: true,
                 dataDinosaur: res.data.data,
+                dataAllDinosaur: res.data.data,
             });
-            console.log(res.data.data);
         })
         .catch((err) => {
             console.log(err.data);
-        })
+        });
+        this.props.background();
+    }
+
+    handleFilter = (e) => {
+        e.preventDefault();
+        let selectors = document.querySelectorAll('.dino__filter__form select');
+        let dataTemp = this.state.dataAllDinosaur;
+        let dataDinosaur = [];
+        for (let i=0;i<selectors.length;i++){
+            let item = selectors[i]; // id of each selector
+            if (item.value != 0){
+                let anyID = item.value;
+                switch (i){
+                    case 0:{
+                        // Category
+                        for (let j=0;j<dataTemp.length;j++){
+                            if (dataTemp[j].category.id == anyID){
+                                dataDinosaur.push(dataTemp[j]);
+                            }
+                        }
+                        dataTemp = [...dataDinosaur];
+                        dataDinosaur = [];
+                        break;
+                    }
+                    case 1:{
+                        // Mesozoic
+                        for (let j=0;j<dataTemp.length;j++){
+                            for (let k=0;k<dataTemp[j].mesozoics.length;k++){
+                                if (dataTemp[j].mesozoics[k].id == anyID){
+                                    dataDinosaur.push(dataTemp[j]);
+                                    break;
+                                }
+                            }
+                        }
+                        dataTemp = [...dataDinosaur];
+                        dataDinosaur = [];
+                        break;
+                    }
+                    case 2:{
+                        // Food
+                        for (let j=0;j<dataTemp.length;j++){
+                            if (dataTemp[j].diet.id == anyID){
+                                dataDinosaur.push(dataTemp[j]);
+                            }
+                        }
+                        dataTemp = [...dataDinosaur];
+                        dataDinosaur = [];
+                        break;
+                    }
+                    case 3:{
+                        // Location
+                        for (let j=0;j<dataTemp.length;j++){
+                            for (let k=0;k<dataTemp[j].countries.length;k++){
+                                if (dataTemp[j].countries[k].id == anyID){
+                                    dataDinosaur.push(dataTemp[j]);
+                                    break;
+                                }
+                            }
+                        }
+                        dataTemp = [...dataDinosaur];
+                        dataDinosaur = [];
+                        break;
+                    }
+                }
+            }
+        }
+        this.setState({
+            dataDinosaur: dataTemp,
+        }); 
+    }
+
+    handleFilterReset = () => {
+        this.setState({
+            dataDinosaur: this.state.dataAllDinosaur,
+        });
     }
 
     render() {
-        const {dataCountry,isLoadedCountry,dataMesozoic,isLoadedMesozoic,dataCategory,isLoadedCategory,dataDiet,isLoadedDiet,isLoadedDinosaur,dataDinosaur} = this.state;
+        
+        const {dataCountry,isLoadedCountry,dataMesozoic,dataAllDinosaur,isLoadedMesozoic,dataCategory,isLoadedCategory,dataDiet,isLoadedDiet,isLoadedDinosaur,dataDinosaur} = this.state;
         return (
             <div className='home__board py-4'>
                 <div className='row'>
@@ -101,58 +178,72 @@ class Home extends Component {
                                 <div className='d-flex mb-2'>
                                     {   
                                         !isLoadedDinosaur?<div>Loading...</div>:
-                                        dataDinosaur.slice(0,3).map((item,index) => {
-                                            return <Link key={index} to={"/detail/"+item.dinosaur_name_en+"/"+item.id} class="badge bg-secondary me-2">{item.dinosaur_name_en}</Link>
+                                        dataAllDinosaur.slice(0,3).map((item,index) => {
+                                            return <Link key={index} to={"/detail/"+item.dinosaur_name_en+"/"+item.id} className="badge bg-secondary me-2">{item.dinosaur_name_en}</Link>
                                         })
                                     }
                                 </div>
                             </div>
                         </div>
-                        <div className='row  dino__filter'>
-                            <div className='form-group mb-4'>
-                                <h5 className='form-label'><i className="fa-solid fa-file-signature"></i> Chủng loại</h5>
-                                <select className="form-select" aria-label="Default select example">
-                                    {
-                                        !isLoadedCategory?<div>Loading...</div>:
-                                        dataCategory.map((item,index) => {
-                                            return <option key={index} value={item.id}>{item.category_name_en}</option>
-                                        })
-                                    }
-                                </select>
-                            </div>
-                            <div className='form-group mb-4'>
-                                <h5 className='form-label'><i className="fa-solid fa-earth-americas"></i> Niên đại</h5>
-                                <select className="form-select" aria-label="Default select example">
-                                    {
-                                        !isLoadedMesozoic?<div>Loading...</div>:
-                                        dataMesozoic.map((item,index) => {
-                                            return <option key={index} value={item.id}>{item.mesozoic_name_vn}</option>
-                                        })
-                                    }
-                                </select>
-                            </div>
-                            <div className='form-group mb-4'>
-                                <h5 className='form-label'><i className="fa-solid fa-apple-whole"></i> Thức ăn</h5>
-                                <select className="form-select" aria-label="Default select example">
-                                    {
-                                        !isLoadedDiet?<div>Loading...</div>:
-                                        dataDiet.map((item,index) => {
-                                            return <option key={index} value={item.id}>{item.diet_name_vn}</option>
-                                        })
-                                    }
-                                </select>
-                            </div>
-                            <div className='form-group mb-4'>
-                                <h5 className='form-label'><i className="fa-solid fa-map-location-dot"></i> Khu vực</h5>
-                                <select className="form-select" aria-label="Default select example">
-                                    {
-                                        !isLoadedCountry?<div>Loading...</div>:
-                                        dataCountry.map((item,index) => {
-                                            return <option key={index} value={item.id}>{item.country_name}</option>
-                                        })
-                                    }
-                                </select>
-                            </div>
+                        <div className='row  dino__filter mb-3'>
+                            <form onSubmit={(e) => this.handleFilter(e) } className="dino__filter__form">
+                                <div className='form-group mb-3'>
+                                    <h5 className='form-label'>Chủng loại</h5>
+                                    <select className="form-select" aria-label="Default select example">
+                                        <option value={0}>Tất cả</option>
+                                        {
+                                            !isLoadedCategory?<option>Loading...</option>:
+                                            dataCategory.map((item,index) => {
+                                                return <option key={index} value={item.id}>{item.category_name_en}</option>
+                                            })
+                                        }
+                                    </select>
+                                    
+                                </div>
+                                <div className='form-group mb-3'>
+                                    <h5 className='form-label'>Niên đại</h5>
+                                    <select className="form-select" aria-label="Default select example">
+                                        <option value={0}>Tất cả</option>
+                                        {
+                                            !isLoadedMesozoic?<option>Loading...</option>:
+                                            dataMesozoic.map((item,index) => {
+                                                return <option key={index} value={item.id}>{item.mesozoic_name_vn}</option>
+                                            })
+                                        }
+                                    </select>
+                                    
+                                </div>
+                                <div className='form-group mb-3'>
+                                    <h5 className='form-label'>Thức ăn</h5>
+                                    <select className="form-select" aria-label="Default select example">
+                                        <option value={0}>Tất cả</option>
+                                        {
+                                            !isLoadedDiet?<option>Loading...</option>:
+                                            dataDiet.map((item,index) => {
+                                                return <option key={index} value={item.id}>{item.diet_name_vn}</option>
+                                            })
+                                        }
+                                    </select>
+                                    
+                                </div>
+                                <div className='form-group mb-3'>
+                                    <h5 className='form-label'>Khu vực có hóa thạch</h5>
+                                    <select className="form-select" aria-label="Default select example">
+                                        <option value={0}>Tất cả</option>
+                                        {
+                                            !isLoadedCountry?<option>Loading...</option>:
+                                            dataCountry.map((item,index) => {
+                                                return <option key={index} value={item.id}>{item.country_name}</option>
+                                            })
+                                        }
+                                    </select>
+                                    
+                                </div>
+                                <div className='form-group mb-3'>
+                                    <button className='btn btn-secondary me-3' type='submit'><i className="fa-solid fa-filter"></i> Tìm kiếm</button>
+                                    <button className='btn btn-danger' type='reset'  onClick={() => this.handleFilterReset()}><i className="fa-solid fa-share"></i> Đặt lại</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <div className='col-lg-8 dino__content'>

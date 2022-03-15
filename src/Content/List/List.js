@@ -86,7 +86,8 @@ class List extends Component {
         })
         .catch((err) => {
             console.log(err.data);
-        })
+        });
+        this.props.background();
     }
 
     changeMesozoicSelect = (e) => {
@@ -97,6 +98,7 @@ class List extends Component {
     }
 
     render() {
+        
         const {dataCountry,isLoadedCountry,dataMesozoic,isLoadedMesozoic,dataCategory,isLoadedCategory,dataDiet,isLoadedDiet,isLoadedDinosaur,dataDinosaur} = this.state;
         const mesozoicLink = this.state.mesozoicLink;
         const geoData = this.state.geoData;
@@ -106,7 +108,7 @@ class List extends Component {
                     <div className='col-lg-12'>
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb">
-                                <Link className="breadcrumb-item dino__breadcum__active" to="/" aria-current="page">Trang chủ</Link>
+                                <Link onClick={() => this.props.choose(0)} className="breadcrumb-item dino__breadcum__active" to="/" aria-current="page">Trang chủ</Link>
                                 <li className="breadcrumb-item" aria-current="page">Kiến thức</li>
                             </ol>
                         </nav>
