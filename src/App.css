@@ -142,50 +142,6 @@ body {
   opacity: 0.7;
 }
 
-.dino__profile__control{
-  background-color: #FFFFFF;
-  padding-bottom: 0;
-}
- 
-.dino__profile__control .nav-link{
-  color: #212529 !important;
-  position: relative;
-}
-
-.dino__profile__control .nav-link::before{
-  content: '';
-  background-color: black;
-  position: absolute;
-  z-index: 1000;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  width: 0%;
-  transition: width 0.3s linear;
-}
-
-.control__active::before{
-  content: '';
-  background-color: black;
-  position: absolute;
-  z-index: 1000;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  width: 100% !important;
-}
-
-.dino__profile__control .nav-link:hover::before{
-  width: 100%;
-}
-
-.dino__control__active{
-  display: block !important;
-}
-
-.dino__control__item{
-  display: none;
-}
 /* Detail */
 
 .dino__detail__list{
