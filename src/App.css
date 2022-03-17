@@ -54,6 +54,12 @@ body {
   padding: 10px 0;
 }
 
+/* Blog */
+.dino__blog__write{
+  padding: 10px 20px;
+  text-align: justify;
+}
+
 /* List */
 
 .dino__list__list{
@@ -103,7 +109,6 @@ body {
 
 .dino__profile__info input{
   border-radius: 0;
-  border: 2px solid black;
 }
 
 .dino__profile__info button{

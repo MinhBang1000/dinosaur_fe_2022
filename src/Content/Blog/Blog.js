@@ -18,6 +18,29 @@ class Blog extends Component {
                         </nav>
                     </div>    
                 </div>
+                <div className='row dino__blog__list'>
+                    <div className='mb-3 bg-white px-2 dino__blog__write'>
+                        <div className='dino__write__item'>
+                            <h4 className=''>Tạo bài viết</h4>
+                            <i className="fa-solid fa-plus"></i>
+                        </div>
+                        <div className='dino__write__item'>
+                            <form action='' method='POST' onSubmit={(e)=>{e.preventDefault()}}>
+                                <div className='form-group mb-3'>
+                                    <label className='form-label'>Tên bài viết <strong className='text-danger'>(*)</strong></label>
+                                    <input className='form-control' placeholder='Nguyễn Văn An ....' type="text" ></input>
+                                </div>
+                                <div className='form-group mb-3'>
+                                    <label className='form-label'>Thẻ liên quan</label>
+                                    <input className='form-control' type="text"></input>
+                                </div>
+                                <div className='form-group mb-3'>
+                                    
+                                </div>
+                            </form>
+                        </div> 
+                    </div>
+                </div>
             </div>
         );
     }
