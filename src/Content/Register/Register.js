@@ -3,6 +3,8 @@ import $ from 'jquery';
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import AOS from "aos";
+import "aos/dist/aos.css";
 class Register extends Component {
 
     constructor(props){
@@ -32,12 +34,15 @@ class Register extends Component {
             })
             .catch((err) => {
                 console.log(err);
-            })
+            });
         });
     }
 
     componentDidMount = () => {
         this.props.background();
+        AOS.init({
+            duration: 1000,
+        });
     }
 
 
@@ -62,7 +67,7 @@ class Register extends Component {
                 </div>
 
                 <div className='row'>
-                    <div className='col-lg-4  my-5 mx-auto  dino__register__list'>
+                    <div className='col-lg-4  my-5 mx-auto  dino__register__list' data-aos="fade-up">
                         <h4 className='text-center my-5'>Đăng ký</h4>
                         <form id='registerForm' method='POST' action='' onSubmit={(e) => {e.preventDefault()}}>
                             <div className='form-group mb-3'>

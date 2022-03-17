@@ -1,3 +1,5 @@
+import AOS from "aos";
+import "aos/dist/aos.css";
 import axios from 'axios';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
@@ -77,6 +79,9 @@ class Home extends Component {
             console.log(err.data);
         });
         this.props.background();
+        AOS.init({
+            duration: 1000
+        });
     }
 
     handleFilter = (e) => {
@@ -169,7 +174,7 @@ class Home extends Component {
                 </div>
                 <div className='row align-items-start'>
                     <div className='col-lg-4'>
-                        <div className='row dino__search mb-3'>
+                        {/* <div className='row dino__search mb-3' data-aos="fade-up">
                             <div className='form-group'>
                                 <div className='d-flex mb-2 dino__search__bar'>
                                     <input className='form-control' placeholder='Tìm kiếm ...'></input>
@@ -184,8 +189,8 @@ class Home extends Component {
                                     }
                                 </div>
                             </div>
-                        </div>
-                        <div className='row  dino__filter mb-3'>
+                        </div> */}
+                        <div className='row  dino__filter mb-3'  data-aos="fade-up">
                             <form onSubmit={(e) => this.handleFilter(e) } className="dino__filter__form">
                                 <div className='form-group mb-3'>
                                     <h5 className='form-label'>Chủng loại</h5>
@@ -226,7 +231,7 @@ class Home extends Component {
                                     </select>
                                     
                                 </div>
-                                <div className='form-group mb-3'>
+                                <div className='form-group mb-4'>
                                     <h5 className='form-label'>Khu vực có hóa thạch</h5>
                                     <select className="form-select" aria-label="Default select example">
                                         <option value={0}>Tất cả</option>
@@ -240,8 +245,8 @@ class Home extends Component {
                                     
                                 </div>
                                 <div className='form-group mb-3'>
-                                    <button className='btn btn-secondary me-3' type='submit'><i className="fa-solid fa-filter"></i> Tìm kiếm</button>
-                                    <button className='btn btn-danger' type='reset'  onClick={() => this.handleFilterReset()}><i className="fa-solid fa-share"></i> Đặt lại</button>
+                                    <button className='btn d-block w-100 mb-3' type='submit'><i className="fa-solid fa-filter"></i> Tìm kiếm</button>
+                                    <button className='btn d-block w-100' type='reset'  onClick={() => this.handleFilterReset()}><i className="fa-solid fa-share"></i> Đặt lại</button>
                                 </div>
                             </form>
                         </div>
@@ -252,14 +257,16 @@ class Home extends Component {
                             {
                                 !isLoadedDinosaur?<div>Loading...</div>:
                                 dataDinosaur.map((item,index) => {
-                                    return <Link key={index} to={"/detail/"+item.dinosaur_name_en+"/"+item.id} className='card col-lg-3 dino__item border-0'>
-                                    <img src={"http://dinosaur_2022:8000/images/avatars/"+item.image}></img>
-                                    <div className='card-body d-flex'>
-                                        <div><strong>{item.dinosaur_name_en}</strong></div>
-                                        <div className='ms-auto'>
-                                            <i className="fa-solid fa-share-nodes"></i>
+                                    return <Link  data-aos="fade-up" key={index} to={"/detail/"+item.dinosaur_name_en+"/"+item.id} className='col-lg-3'>
+                                        <div className="card dino__item border-0">
+                                            <img src={"http://dinosaur_2022:8000/images/avatars/"+item.image}></img>
+                                            <div className='card-body d-flex'>
+                                                <div><strong>{item.dinosaur_name_en}</strong></div>
+                                                <div className='ms-auto'>
+                                                    <i className="fa-solid fa-share-nodes"></i>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
                                     </Link>  
                                 })
                             }

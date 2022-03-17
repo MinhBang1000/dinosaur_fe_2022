@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 class Login extends Component {
     constructor(props){
@@ -13,6 +15,9 @@ class Login extends Component {
 
     componentDidMount = () => {
         this.props.background();
+        AOS.init({
+            duration: 1000,
+        });
     }
 
     handleLogin = () => {
@@ -59,7 +64,7 @@ class Login extends Component {
                     </div>    
                 </div>
                 <div className='row'>
-                    <div className='col-lg-4 my-5 mx-auto dino__login__list'>
+                    <div className='col-lg-4 my-5 mx-auto dino__login__list' data-aos="fade-up">
                         <h4 className='text-center my-5'>Đăng nhập</h4>
                         <form id='loginForm' onSubmit={(e) => {e.preventDefault()}} action='' method='POST'>
                             <div className='form-group mb-3'>

@@ -98,24 +98,38 @@ body {
  /* Profile */
  .dino__profile__info{
   padding: 10px 20px;
-  background-color: #F4F4F4;
+  background-color: #FFFFFF;
 }
 
-.dino__profile__update, .dino__profile__post{
-  padding: 100px 20px;
-  background-color: #F4F4F4;
-  font-size: 40px;
+.dino__profile__info input{
+  border-radius: 0;
+  border: 2px solid black;
+}
+
+.dino__profile__info button{
+  border-radius: 50px;
+  padding: 10px 0;
+  color: white;
+  transition: all 0.3s linear;
+  opacity: 1;
+}
+
+.dino__profile__info button:hover{
+  opacity: 0.7;
+}
+
+.dino__profile__info button:first-child{
+  background-color: #037097;
+}
+
+.dino__profile__info button:last-child{
+  background-color: #D95140;
+}
+
+.wrapperClassName{
   display: flex;
-  justify-content: center;
-  align-items: baseline;
-  transition: box-shadow 0.3s linear;
-  cursor: pointer;
-  user-select: none;
 }
 
-.dino__profile__update:hover, .dino__profile__post:hover{
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
 
 .dino__profile__avatar img{
   cursor: pointer;
@@ -128,8 +142,50 @@ body {
   opacity: 0.7;
 }
 
-
+.dino__profile__control{
+  background-color: #FFFFFF;
+  padding-bottom: 0;
+}
  
+.dino__profile__control .nav-link{
+  color: #212529 !important;
+  position: relative;
+}
+
+.dino__profile__control .nav-link::before{
+  content: '';
+  background-color: black;
+  position: absolute;
+  z-index: 1000;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  transition: width 0.3s linear;
+}
+
+.control__active::before{
+  content: '';
+  background-color: black;
+  position: absolute;
+  z-index: 1000;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  width: 100% !important;
+}
+
+.dino__profile__control .nav-link:hover::before{
+  width: 100%;
+}
+
+.dino__control__active{
+  display: block !important;
+}
+
+.dino__control__item{
+  display: none;
+}
 /* Detail */
 
 .dino__detail__list{
@@ -242,6 +298,32 @@ body {
   background-color: #F4F4F4;
 }
 
+.dino__filter select{
+  border-radius: 0;
+  border: 2px solid #212529;
+}
+
+.dino__filter button{
+  opacity: 1;
+  transition: all 0.3s linear;
+  border-radius: 50px;
+  padding: 10px 0;
+}
+
+.dino__filter button:first-child{
+  background-color: #037097;;
+  color: white;
+}
+
+.dino__filter button:last-child{
+  background-color: #212529;
+  color: white;
+}
+
+.dino__filter button:hover{
+  opacity: 0.7;
+}
+
 .dino__search{
   padding: 10px 20px;
   background-color: #F4F4F4;
@@ -318,6 +400,11 @@ body {
   border-radius: 50px;
   padding: 10px 0;
   background-color: #037097;
+  transition: all 0.3s linear;
+  opacity: 1;
+}
+.dino__register__list form button:hover{
+  opacity: 0.7;
 }
 
 /* Login */
@@ -349,8 +436,6 @@ body {
   color: #D95140;
 }
 
-
-
 .dino__login__list form{
   display: block;
   width: 90%;
@@ -365,6 +450,12 @@ body {
   border-radius: 50px;
   padding: 10px 0;
   background-color: #037097;
+  transition: all 0.3s linear;
+  opacity: 1;
+}
+
+.dino__login__list form button:hover{
+  opacity: 0.7;
 }
 
 /* Background */
@@ -393,6 +484,20 @@ body {
     padding: 16px 0;
     position: relative;
     text-decoration: none;
+  }
+
+  .dino__navbar__item__search{
+    text-align: center;
+    padding: 16px 0;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    color: #001825;
+    transition: all 0.3s linear;
+  }
+
+  .dino__navbar__item__search:hover{
+    text-shadow: 3px 4px 7px rgba(81,67,21,0.8);
   }
   
   .dino__navbar__item::before{
@@ -441,6 +546,41 @@ body {
   .dino__navbar__item{
     text-decoration: none;
   }
+
+  .dino__navbar__item__search{
+    margin-left: 0 !important;
+    color: #001825;
+    user-select: none;
+    cursor: pointer;
+    transition: all 0.3s linear;
+  }
+
+  .dino__navbar__item__search:hover{
+    text-shadow: 3px 4px 7px rgba(81,67,21,0.8);
+  }
+}
+
+/* Search */
+.modal-backdrop{
+  z-index: 1020 !important;
+}
+
+.modal-content{
+  border-radius: 0;
+  background-color: #001825;
+  color: white;
+  
+}
+
+.modal-header{
+  position: relative;
+}
+
+.modal__close{
+  position: absolute;
+  color: white !important;
+  right: 20px;
+  top: 22px;
 }
 
 

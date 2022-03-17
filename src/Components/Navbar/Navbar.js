@@ -39,9 +39,29 @@ class Navbar extends Component {
                                         <div className="nav-link" aria-current="page" >Tài khoản</div>
                                     </Link>
                             }
+                            
+                            <div className='ms-3  nav-item dino__navbar__item__search'  data-bs-toggle="modal" data-bs-target="#searchModal">
+                                <i className="fa-solid fa-magnifying-glass"></i> Tra cứu
+                            </div>
 
                             
                         </ul>
+                    </div>
+                </div>
+                <div className="modal fade" id="searchModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header d-block">
+                                <button type="button" className="btn-close modal__close" data-bs-dismiss="modal" aria-label="Close" />
+                                <h4 className='text-center d-block'>Tìm kiếm thông tin</h4>
+                            </div>
+                            <div className="modal-body">
+                                <div className='dino__search__board d-flex'>
+                                    <input className='form-control' placeholder='Tìm kiếm ...'></input>
+                                    <button className='btn bg-light'><i className="fa-solid fa-magnifying-glass"></i></button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </nav>

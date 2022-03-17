@@ -4,6 +4,11 @@ import $ from'jquery';
 import { Link } from 'react-router-dom';
 import Chart from 'react-google-charts';
 import { Redirect } from 'react-router-dom';
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { Editor } from "react-draft-wysiwyg";
+import { EditorState } from 'draft-js';
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 class Profile extends Component {
     constructor(props){
@@ -17,7 +22,14 @@ class Profile extends Component {
             profileGender: "Male",
             profileAvatar: "Loading...",
             redirectHome: false,
+            editorState: EditorState.createEmpty(),
         }
+    }
+
+    onEditorStateChange= (editorState1) => {
+        this.setState({
+            editorState: editorState1,
+        });
     }
 
     componentDidMount = () => {
@@ -40,6 +52,9 @@ class Profile extends Component {
             console.log(err);
         });
         this.props.background();
+        AOS.init({
+            duration: 1000,
+        });
     }
 
     triggerUpload = () => {
@@ -123,10 +138,19 @@ class Profile extends Component {
         });
     }
 
+    handleChooseControl = (index) => {
+        let items = document.querySelectorAll('.dino__control__item');
+        for (let i=0;i<items.length;i++){
+            items[i].classList.remove('dino__control__active');
+        }
+        items[index].classList.add('dino__control__active');
+        console.log(items);
+    }
+
 
     render() {
         
-        const {dataUser,isLoadedUser} = this.state;
+        const {dataUser,isLoadedUser,editorState} = this.state;
         const options = {
             chart: {
               title: "Biểu đồ đóng góp",
@@ -167,8 +191,8 @@ class Profile extends Component {
                         </nav>
                     </div>    
                 </div>
-                <div className='row'>
-                    <div className='col-lg-4 dino__profile__info'>
+                <div className='row justify-content-center'>
+                    <div className='col-lg-4 dino__profile__info my-5' data-aos="fade-up">
                         <h4 className='text-center'>Thông tin cá nhân</h4>
                         <div className='mb-3 dino__profile__avatar'>
                             {
@@ -217,42 +241,17 @@ class Profile extends Component {
                                     <label className="form-check-label" >Khác</label>
                                 </div>
                             </div>
-                            <div className='form-group mb-3 d-none'>
+                            <div className='form-group mb-4 d-none'>
                                 <label for="formFile" className="form-label">Hình đại diện</label>
                                 <input className="form-control" id='registerAvatar' type="file" name='profileAvatar' />
                             </div>
                             <div className='form-group mb-3'>
-                                <button className='btn btn-secondary me-2'  onClick={() => this.handleProfile()} type='submit'>Cập nhật</button>
-                                <button className='btn btn-danger' onClick={() => this.handleLogout()} type='button'>Đăng xuất</button>
+                                <button className='btn d-block w-100 mb-3'  onClick={() => this.handleProfile()} type='submit'>Cập nhật</button>
+                                <button className='btn d-block w-100' onClick={() => this.handleLogout()} type='button'>Đăng xuất</button>
                             </div>
                         </form>
                     </div>
 
-                    <div className='col-lg-8'>
-                        <div className='mb-3 row mx-0'>
-                            <div className=' col-lg-6'>
-                                <div className='text-center dino__profile__post'>
-                                    <strong>10 bài viết</strong>
-                                </div>
-                            </div>
-                            <div className=' col-lg-6'>
-                                <div className='text-center dino__profile__update'>
-                                    <strong>50 loài</strong>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='row mx-0'>
-                            <div className='col-lg-12'>
-                                <div className='dino__profile__favorite'>
-                                    <Chart chartType="Line"
-                                        width="100%"
-                                        height="400px"
-                                        data={data}
-                                        options={options} />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         );

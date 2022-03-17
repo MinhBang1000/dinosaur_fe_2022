@@ -1,3 +1,5 @@
+import AOS from "aos";
+import "aos/dist/aos.css";
 import axios from 'axios';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
@@ -88,6 +90,9 @@ class List extends Component {
             console.log(err.data);
         });
         this.props.background();
+        AOS.init({
+            duration: 1000
+        });
     }
 
     changeMesozoicSelect = (e) => {
@@ -114,7 +119,7 @@ class List extends Component {
                         </nav>
                     </div>    
                 </div>
-                <div className='row dino__list__list'>
+                <div className='row dino__list__list' data-aos="fade-up">
                     <div className='mb-3 w-100'>
                         <div className='col-lg-12'>
                             <h4 className='text-center'>Khủng long là gì ?</h4>

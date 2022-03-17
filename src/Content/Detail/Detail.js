@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import GeoChart from '../../Components/GeoChart/GeoChart';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 class Detail extends Component {
 
@@ -111,6 +113,9 @@ class Detail extends Component {
             console.log(err.data);
         });
         this.props.background();
+        AOS.init({
+            duration: 1000,
+        });
     }
 
     openImageToSave = (url) => {
@@ -143,7 +148,7 @@ class Detail extends Component {
 
                 <div className='row'>
                     <div className='col-lg-6'>
-                        <div className='row dino__detail__list mb-3'>
+                        <div className='row dino__detail__list mb-3' data-aos="fade-up">
                             <h4>{!isLoadedDetail?<div>Loading...</div>:itemDetail.dinosaur_name_en}</h4>
                             <div>Cách gọi: {!isLoadedDetail?<div>Loading...</div>:itemDetail.dinosaur_name_spelling}</div>
                             <div className='mb-3'>Ý nghĩa:  {!isLoadedDetail?<div>Loading...</div>:itemDetail.dinosaur_name_explain}</div>
@@ -189,7 +194,7 @@ class Detail extends Component {
                                 }
                             </table>
                         </div>
-                        <div className='row dino__detail__earth mb-3'>
+                        <div className='row dino__detail__earth mb-3' data-aos="fade-up">
                             <h4>Niên đại sinh sống</h4>
                             <iframe key={urlIframe} src={urlIframe} title="DINOWHEN"></iframe>
                             <a className='d-block text-center mb-3' href={urlIframe} target="blank">Xem đầy đủ</a>
@@ -223,7 +228,7 @@ class Detail extends Component {
                                 </tr>
                             </table>
                         </div>
-                        <div className='row dino__detail__map mb-3'>
+                        <div className='row dino__detail__map mb-3' data-aos="fade-up">
                             <h4>Khu vực phát hiện hóa thạch</h4>
                             <table className='mb-3'>
                                 <thead>
@@ -252,7 +257,7 @@ class Detail extends Component {
                             {
                                 !isLoadedDetail?<div>Loading...</div>:
                                 dinosaurCollection.map((item,index) => {
-                                    return <div key={index} className='dino__detail__collection__item'>
+                                    return <div  data-aos="fade-up" key={index} className='dino__detail__collection__item'>
                                         <img className='w-100 h-auto' src={"http://dinosaur_2022:8000/images/collections/"+item} onClick={() => this.openImageToSave("http://dinosaur_2022:8000/images/collections/"+item)}></img>
                                     </div>
                                 })
