@@ -6,9 +6,6 @@ import Chart from 'react-google-charts';
 import { Redirect } from 'react-router-dom';
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { Editor } from "react-draft-wysiwyg";
-import { EditorState } from 'draft-js';
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 class Profile extends Component {
     constructor(props){
@@ -22,14 +19,7 @@ class Profile extends Component {
             profileGender: "Male",
             profileAvatar: "Loading...",
             redirectHome: false,
-            editorState: EditorState.createEmpty(),
         }
-    }
-
-    onEditorStateChange= (editorState1) => {
-        this.setState({
-            editorState: editorState1,
-        });
     }
 
     componentDidMount = () => {
@@ -150,7 +140,7 @@ class Profile extends Component {
 
     render() {
         
-        const {dataUser,isLoadedUser,editorState} = this.state;
+        const {dataUser,isLoadedUser} = this.state;
         const options = {
             chart: {
               title: "Biểu đồ đóng góp",
